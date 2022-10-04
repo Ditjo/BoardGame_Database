@@ -1,0 +1,66 @@
+﻿ <Window x:Class="Brætspils_Database.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Brætspils_Database.Controls"
+        xmlns:local="clr-namespace:Brætspils_Database"
+        xmlns:view="clr-namespace:Brætspils_Database.View"
+        xmlns:viewModel="clr-namespace:Brætspils_Database.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800" FontSize="20">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:EditViewModel}">
+            <view:BoardGameView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ListViewModel}">
+            <view:ListView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:FrontpageViewModel}">
+            <view:FrontPageView/>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Main Menu -->
+        <Menu FontSize="20">
+            <MenuItem Header="Frontpage"
+                      Command="{Binding SelectViewModelCommand}"
+                      CommandParameter="{Binding FrontpageViewModel}">
+
+            </MenuItem>
+            <MenuItem Header="Liste" ToolTip="Se liste over spil"
+                      Command="{Binding SelectViewModelCommand}"
+                      CommandParameter="{Binding ListViewModel}">
+
+            </MenuItem>
+            <MenuItem Header="Edit" ToolTip="Tilføj, Fjern, Ændre Spil"
+                      Command="{Binding SelectViewModelCommand}"
+                      CommandParameter="{Binding EditViewModel}">
+
+            </MenuItem>
+        </Menu>
+
+        <!-- Header -->
+        <controls:HeaderControl Grid.Row="1"/>
+
+        <!-- View -->
+
+        <ContentControl Grid.Row="2 " Content="{Binding SelectedViewModel}"/>
+        <!-- Statusbar -->
+        <StatusBar Grid.Row="3" Background="DimGray" 
+                   BorderBrush="Black" BorderThickness="2">
+            <StatusBarItem FontSize="20">
+                <TextBlock Text="Here be Dragons"/>
+
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>

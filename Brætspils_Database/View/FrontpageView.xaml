@@ -7,8 +7,25 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="FrontPage"
+        <Border BorderBrush="Black" 
+                BorderThickness="2" 
+                CornerRadius="20"
+                Margin="40">
+            <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+
+                <TextBlock  Text="What about Playing:"
+                            FontSize="25"
+                            HorizontalAlignment="Center"/>
+                <TextBlock 
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>
+                    FontSize="40"
+                    Margin="10"
+                    Text="{Binding Path=RandomGame.Titel, 
+                    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock/>
+            </StackPanel>
+        </Border>
+
     </Grid>
 </UserControl>

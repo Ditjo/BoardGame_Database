@@ -1,4 +1,4 @@
-﻿ <Window x:Class="Brætspils_Database.MainWindow"
+﻿<Window x:Class="Brætspils_Database.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:controls="clr-namespace:Brætspils_Database.Controls"
         xmlns:local="clr-namespace:Brætspils_Database"
         xmlns:view="clr-namespace:Brætspils_Database.View"
-        xmlns:viewModel="clr-namespace:Brætspils_Database.ViewModel"
+        xmlns:viewModel="clr-namespace:Brætspils_Database.ViewModel" d:DataContext="{d:DesignInstance Type=viewModel:EditViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800" FontSize="20">
     <Window.Resources>
@@ -20,47 +20,72 @@
             <view:FrontPageView/>
         </DataTemplate>
     </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="F5"
+                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window},AncestorLevel=1}, Path=DataContext.EditViewModel.ReloadListCommand}"/>
+    </Window.InputBindings>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
 
-        <!-- Main Menu -->
-        <Menu FontSize="20">
-            <MenuItem Header="Frontpage"
+            <!-- Main Menu -->
+            <Menu FontSize="20">
+                <MenuItem Header="Frontpage"
                       Command="{Binding SelectViewModelCommand}"
                       CommandParameter="{Binding FrontpageViewModel}">
 
-            </MenuItem>
-            <MenuItem Header="Liste" ToolTip="Se liste over spil"
+                </MenuItem>
+                <MenuItem Header="Liste" ToolTip="Se liste over spil"
                       Command="{Binding SelectViewModelCommand}"
                       CommandParameter="{Binding ListViewModel}">
 
-            </MenuItem>
-            <MenuItem Header="Edit" ToolTip="Tilføj, Fjern, Ændre Spil"
+                </MenuItem>
+                <MenuItem Header="Edit" ToolTip="Tilføj, Fjern, Ændre Spil"
                       Command="{Binding SelectViewModelCommand}"
                       CommandParameter="{Binding EditViewModel}">
 
-            </MenuItem>
-        </Menu>
+                </MenuItem>
+            </Menu>
 
-        <!-- Header -->
-        <controls:HeaderControl Grid.Row="1"/>
+            <!-- Header -->
+            <controls:HeaderControl Grid.Row="1"/>
 
-        <!-- View -->
+            <!-- View -->
 
-        <ContentControl Grid.Row="2 " Content="{Binding SelectedViewModel}"/>
-        <!-- Statusbar -->
-        <StatusBar Grid.Row="3" Background="DimGray" 
+            <ContentControl Grid.Row="2 " Content="{Binding SelectedViewModel}"/>
+            <!-- Statusbar -->
+            <StatusBar Grid.Row="3" Background="DimGray" 
                    BorderBrush="Black" BorderThickness="2">
-            <StatusBarItem FontSize="20">
-                <TextBlock Text="Here be Dragons"/>
 
-            </StatusBarItem>
-        </StatusBar>
+                <StatusBarItem FontSize="20">
+                    <TextBlock Text="Here be Dragons">
+                        <TextBlock.ToolTip>
+                            <ToolTip Placement="Top">
+                                <StackPanel Width="200" Height="150">
+                                    <Image Source="Images\LegoDragon.jpg"/>
+                                </StackPanel>
 
+                            </ToolTip>
+
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+
+                </StatusBarItem>
+            </StatusBar>
+
+        </Grid>
+        
+        <!--<Grid>
+            <Image Source="Images/Lego_dragon.jpg"
+                   x:Name="Dragon"
+                   Height="150"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Bottom"/>
+        </Grid>-->
     </Grid>
 </Window>

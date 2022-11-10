@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource HeaderbackgroundBrush}">
         <StackPanel>
-            <TextBlock Text="Brætspils-liste" 
+            <TextBlock Text="Board-games List" 
                    Foreground="{StaticResource HeaderforegroundBrush}"
                    FontSize="28"
                    FontStyle="Italic"

@@ -1,5 +1,6 @@
 ﻿using Brætspils_Database.Data;
 using Brætspils_Database.ViewModel;
+using Brætspils_Database.Sql_Querys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,12 @@ namespace Brætspils_Database
 
         public MainWindow()
         {
+
             InitializeComponent();
             _viewModel = new MainViewModel(
-                new EditViewModel(new GameDataDbProvider()),
-                new ListViewModel(),
-                new FrontpageViewModel());
+                new EditViewModel(),
+                new ListViewModel(/*new GameDataDbProvider()*/),
+                new FrontpageViewModel(/*new GameDataDbProvider()*/));
             DataContext = _viewModel;
             Loaded += MainWindow_Loaded;
         }

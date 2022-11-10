@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Brætspils_Database.ViewModel
 {
     //Uses the Model as base to the ViewModel.
     //You get the model object and are able to get and set the different fields of the object.
     // The 'OnPropertyChanged()' calls for the UI to update.
-    public class GameItemViewModel : ViewModelBase
+    public class GameItemViewModel : ValidationViewModelBase
     {
         private readonly Game _model;
 
@@ -28,6 +29,15 @@ namespace Brætspils_Database.ViewModel
             { 
                 _model.Titel = value;
                 OnPropertyChanged();
+                if (string.IsNullOrEmpty(_model.Titel))
+               {
+                    AddError("Titel is required");
+                    
+                }
+                else
+                {
+                    ClearErrors();
+                }
             }
 
         }
